@@ -13,20 +13,20 @@
 #' @seealso [geom_mode_circular()]
 #' @export
 geom_mode_point <- function(mapping = NULL, data = NULL,
-                                  stat = "mode", position = "identity",
-                                  ...,
-                                  mode = "peak",
-                                  bw = "nrd0",
-                                  adjust = 1,
-                                  kernel = "gaussian",
-                                  n = 512,
-                                  trim = FALSE,
-                                  na.rm = FALSE,
-                                  bounds = c(-Inf, Inf),
-                                  orientation = NA,
-                                  show.legend = NA,
-                                  inherit.aes = TRUE
-) {
+                            stat = "mode", position = "identity",
+                            ...,
+                            mode = "peak",
+                            bw = "nrd0",
+                            adjust = 1,
+                            kernel = "gaussian",
+                            n = 512,
+                            trim = FALSE,
+                            na.rm = FALSE,
+                            bounds = c(-Inf, Inf),
+                            orientation = NA,
+                            show.legend = NA,
+                            inherit.aes = TRUE
+                            ) {
   ggplot2::layer(
     data = data,
     mapping = mapping,

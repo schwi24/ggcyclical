@@ -12,21 +12,21 @@
 #'   `geom_density_circular()` and `stat_density_circular()`.
 #' @export
 geom_density_circular <- function(mapping = NULL, data = NULL,
-                         stat = "density_circular", position = "identity",
-                         ...,
-                         period = 2 * pi,
-                         bw = NULL,
-                         adjust = 1,
-                         kernel = "vonmises",
-                         n = 512,
-                         K = NULL,
-                         trim = FALSE,
-                         bounds = c(-Inf, Inf),
-                         na.rm = FALSE,
-                         orientation = NA,
-                         show.legend = NA,
-                         inherit.aes = TRUE
-                         ) {
+                                  stat = "density_circular", position = "identity",
+                                  ...,
+                                  period = 2 * pi,
+                                  bw = NULL,
+                                  adjust = 1,
+                                  kernel = "vonmises",
+                                  n = 512,
+                                  K = NULL,
+                                  trim = FALSE,
+                                  bounds = c(-Inf, Inf),
+                                  na.rm = FALSE,
+                                  orientation = NA,
+                                  show.legend = NA,
+                                  inherit.aes = TRUE
+                                  ) {
   ggplot2::layer(
     data = data,
     mapping = mapping,

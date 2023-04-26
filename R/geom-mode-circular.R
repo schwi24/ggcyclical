@@ -15,22 +15,22 @@
 #'   `geom_mode_circular()` and `stat_mode_circular()`.
 #' @export
 geom_mode_circular <- function(mapping = NULL, data = NULL,
-                                  stat = "mode_circular", position = "identity",
-                                  ...,
-                                  period = 2 * pi,
-                                  mode = "peak",
-                                  bw = NULL,
-                                  adjust = 1,
-                                  kernel = "vonmises",
-                                  n = 512,
-                                  K = NULL,
-                                  trim = FALSE,
-                                  na.rm = FALSE,
-                                  bounds = c(-Inf, Inf),
-                                  orientation = NA,
-                                  show.legend = NA,
-                                  inherit.aes = TRUE
-) {
+                               stat = "mode_circular", position = "identity",
+                               ...,
+                               period = 2 * pi,
+                               mode = "peak",
+                               bw = NULL,
+                               adjust = 1,
+                               kernel = "vonmises",
+                               n = 512,
+                               K = NULL,
+                               trim = FALSE,
+                               na.rm = FALSE,
+                               bounds = c(-Inf, Inf),
+                               orientation = NA,
+                               show.legend = NA,
+                               inherit.aes = TRUE
+                               ) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
