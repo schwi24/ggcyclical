@@ -50,4 +50,11 @@ rsconnect/
 
 # Helper functions that should be sourced
 R/stat-helpers-ggplot2.R
+
+# Renv
+renv/
+renv.lock
+
+# Other
 .Rproj.user
+

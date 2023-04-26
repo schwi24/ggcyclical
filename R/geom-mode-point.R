@@ -26,9 +26,9 @@ geom_mode_point <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomModepoint <- ggproto(
-  "GeomModepoint", GeomPoint,
-  default_aes = aes(
+GeomModepoint <- ggplot2::ggproto(
+  "GeomModepoint", ggplot2::GeomPoint,
+  default_aes = ggplot2::aes(
     fill = NA,
     shape = 19,
     size = 1.5,

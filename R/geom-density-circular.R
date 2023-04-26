@@ -27,9 +27,9 @@ geom_density_circular <- function(mapping = NULL, data = NULL,
 #' @usage NULL
 #' @export
 #' @include geom-ribbon.R
-GeomDensityCircular <- ggproto(
-  "GeomDensityCircular", GeomDensity,
-  default_aes = aes(
+GeomDensityCircular <- ggplot2::ggproto(
+  "GeomDensityCircular", ggplot2::GeomDensity,
+  default_aes = ggplot2::aes(
     fill = NA,
     linewidth = 0.5,
     linetype = 1,

@@ -10,7 +10,7 @@ geom_mode_circular <- function(mapping = NULL, data = NULL,
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomModepointCircular,
+    geom = GeomModepoint,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -21,19 +21,3 @@ geom_mode_circular <- function(mapping = NULL, data = NULL,
     )
   )
 }
-
-#' @rdname ggplot2-ggproto
-#' @format NULL
-#' @usage NULL
-#' @export
-GeomModepointCircular <- ggproto(
-  "GeomModepointCircular", GeomPoint,
-  default_aes = aes(
-    fill = NA,
-    shape = 19,
-    size = 1.5,
-    stroke = 0.5,
-    colour = "black",
-    alpha = NA
-  )
-)
