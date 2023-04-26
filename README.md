@@ -1,4 +1,8 @@
 # ggcyclical
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/schwi24/ggcyclical/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/schwi24/ggcyclical/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 R package for tidy analysis of cyclical (circular, periodic, directional, polar) data and plotting with ggplot2.
 
 This package extends the package `ggplot2` with functions to plot cyclical data and uses many statistical tools from the package `circular` but without forcing the data format `circular`. It also adds functions to calculate summary statistics of cyclical data in tidy workflows.
