@@ -125,7 +125,7 @@ wind directions, optimal angles, preferred movement directions of
 microbes under chemotaxis, and many temporal datasets.
 
 In `stat_density_circular`, all calculations are internally performed on
-the unit circle (0,2*π*). Any data is silently transformed using the
+the unit circle (0,2*π*). Any cyclical data is transformed using the
 period $\frac{2\pi x}{\text{period}}$ and the normalized densities are
 converted back before output. This transformation is controlled by the
 parameter `period`. Thus, the output seamlessly integrates in `ggplot2`
@@ -168,7 +168,7 @@ and can be scaled like other data.
         scale_x_continuous(
           limits = c(0, 12),
           breaks = 1:12,
-          labels = c("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII")
+          labels = as.roman(1:12)
         ) +
         scale_y_continuous(limits = c(0, 0.3)) +
         labs(x = "x", y = "density")
