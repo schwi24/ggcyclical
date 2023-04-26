@@ -157,10 +157,6 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 Computes and draws circular kernel density estimate. This is a useful
 alternative to regular kernel density estimate, which fail to capture
 cyclical (circular, periodic, directional, polar) data properly.
-
-Computes and draws circular kernel density estimate. This is a useful
-alternative to regular kernel density estimate, which fail to capture
-cyclical (circular, periodic, directional, polar) data properly.
 }
 \section{Orientation}{
 
