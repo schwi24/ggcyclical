@@ -5,5 +5,5 @@ This package extends the package `ggplot2` with functions to plot cyclical data 
   
 ## Key features
 * cyclical kernel density estimatiaton in `stat_density_circular` and `geom_density_circular`.
-* Add modes (peaks, trough) to regular and cyclical density plots with `stat_mode`, `stat_mode_circular`, and `geom_mode_points`.
+* Add modes (peaks, trough) to regular and cyclical density plots with `stat_mode`, `stat_mode_circular`, and `geom_mode_point`.
 * Calculate cyclical mean, weighted mean, and standard deviations.
