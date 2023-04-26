@@ -8,4 +8,4 @@ This package extends the package `ggplot2` with functions to plot cyclical data 
 * Add modes (peaks, troughs/valleys) to regular and cyclical density plots with `stat_mode`, `stat_mode_circular`, and `geom_mode_point`.
 * Calculate cyclical mean, weighted mean, and standard deviations.
 
-![](figures/better_density-1.png)
+![](man/figures/better_density-1.png)
