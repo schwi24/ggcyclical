@@ -108,12 +108,21 @@ StatDensityCircular <- ggplot2::ggproto(
   
   required_aes = c("x|y"),
   
-  default_aes = ggplot2::aes(x = after_stat(density), y = after_stat(density), fill = NA, weight = NULL),
+  default_aes = ggplot2::aes(
+    x = after_stat(density),
+    y = after_stat(density),
+    fill = NA, weight = NULL
+  ),
   
   dropped_aes = "weight",
   
   setup_params = function(self, data, params) {
-    params$flipped_aes <- ggplot2::has_flipped_aes(data, params, main_is_orthogonal = FALSE, main_is_continuous = TRUE)
+    params$flipped_aes <- ggplot2::has_flipped_aes(
+      data,
+      params,
+      main_is_orthogonal = FALSE,
+      main_is_continuous = TRUE
+    )
     
     has_x <- !(is.null(data$x) && is.null(params$x))
     has_y <- !(is.null(data$y) && is.null(params$y))
@@ -232,12 +241,16 @@ compute_density_circular <- function(
       x = x, bw = bw, adjust = adjust, kernel = kernel, n = n, K = K
     )
     dens <- ggplot2:::reflect_density(
-      dens = dens, bounds = bounds, from = circular::circular(from * 2 * pi / period), to = circular::circular(to * 2 * pi / period)
+      dens = dens,
+      bounds = bounds,
+      from = circular::circular(from * 2 * pi / period),
+      to = circular::circular(to * 2 * pi / period)
     )
   } else {
     dens <- circular::density.circular(
       x = x, bw = bw, adjust = adjust, kernel = kernel, n = n, K = K,
-      from = circular::circular(from * 2 * pi / period), to = circular::circular(to * 2 * pi / period)
+      from = circular::circular(from * 2 * pi / period),
+      to = circular::circular(to * 2 * pi / period)
     )
   }
   

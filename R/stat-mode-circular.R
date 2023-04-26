@@ -117,12 +117,19 @@ StatModeCircular <- ggplot2::ggproto(
   
   required_aes = c("x|y"),
   
-  default_aes = ggplot2::aes(x = after_stat(density), y = after_stat(density), fill = NA, weight = NULL),
+  default_aes = ggplot2::aes(
+    x = after_stat(density),
+    y = after_stat(density),
+    fill = NA,
+    weight = NULL
+  ),
   
   dropped_aes = "weight",
   
   setup_params = function(self, data, params) {
-    params$flipped_aes <- ggplot2::has_flipped_aes(data, params, main_is_orthogonal = FALSE, main_is_continuous = TRUE)
+    params$flipped_aes <- ggplot2::has_flipped_aes(
+      data, params, main_is_orthogonal = FALSE, main_is_continuous = TRUE
+    )
     
     has_x <- !(is.null(data$x) && is.null(params$x))
     has_y <- !(is.null(data$y) && is.null(params$y))
