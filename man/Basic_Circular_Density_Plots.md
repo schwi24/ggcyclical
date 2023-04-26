@@ -61,7 +61,7 @@ represent circular data (in either carthesian or polar coordinates).
 
 ![](figures/better_density-2.png)
 
-## Bandwidth sSelection
+## Bandwidth Selection
 
 The bandwidth parameter for the kernel density estimation (KDE) is
 selected differently in linear and circular KDE and these estimates are
@@ -125,11 +125,11 @@ wind directions, optimal angles, preferred movement directions of
 microbes under chemotaxis, and many temporal datasets.
 
 In `stat_density_circular`, all calculations are internally performed on
-the unit circle (0,2*π*). Any data is silently transformed using the
+the unit circle (0,2*π*). Any cyclical data is transformed using the
 period $\frac{2\pi x}{\text{period}}$ and the normalized densities are
 converted back before output. This transformation is controlled by the
 parameter `period`. Thus, the output seamlessly integrates in `ggplot2`
-and can be scaled like other data.
+and can be scaled like other polar data.
 
     df <- tibble(
       x = c(rnorm(160, pi, 2), rnorm(40, 1.5*pi, 1)),
@@ -168,7 +168,7 @@ and can be scaled like other data.
         scale_x_continuous(
           limits = c(0, 12),
           breaks = 1:12,
-          labels = c("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII")
+          labels = as.roman(1:12)
         ) +
         scale_y_continuous(limits = c(0, 0.3)) +
         labs(x = "x", y = "density")
