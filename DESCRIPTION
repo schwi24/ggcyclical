@@ -2,8 +2,8 @@ Package: ggcyclical
 Title: Tidy circular, periodic, directional, or polar data
 Version: 0.0.0.9000
 Authors@R: 
-    person("Christoph", "Schweingruber", , "christoph.schweingruber@dbb.su.se", role = "aut",
-           comment = c(ORCID = "0000-0003-4505-9068"))
+    person("Christoph", "Schweingruber", email = "christoph.schweingruber@dbb.su.se", 
+           role = c("cre", "aut"), comment = c(ORCID = "0000-0003-4505-9068"))
 Description:
   Tidy analysis of circular (periodic, directional, polar) data and plotting 
   with `ggplot2`.
@@ -15,3 +15,19 @@ License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Collate: 
+    'bw-taylor.R'
+    'geom-density-circular.R'
+    'geom-mode-circular.R'
+    'geom-mode-point.R'
+    'stat-density-circular.R'
+    'stat-mode-circular.R'
+    'stat-mode.R'
+Imports:
+    rlang (>= 1.1.0),
+    ggplot2 (>= 3.4.2),
+    tibble (>= 3.2.1),
+    circular (>= 0.4-95),
+    cli (>= 3.6.1)
+URL: https://github.com/schwi24/ggcyclical
+BugReports: https://github.com/schwi24/ggcyclical/issues
