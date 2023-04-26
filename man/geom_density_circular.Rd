@@ -13,7 +13,7 @@ geom_density_circular(
   position = "identity",
   ...,
   period = 2 * pi,
-  bw = NULL,
+  bw = "log",
   adjust = 1,
   kernel = "vonmises",
   n = 512,
@@ -33,7 +33,7 @@ stat_density_circular(
   position = "stack",
   ...,
   period = 2 * pi,
-  bw = NULL,
+  bw = "log",
   adjust = 1,
   kernel = "vonmises",
   n = 512,
@@ -86,9 +86,9 @@ If character, a rule to choose the bandwidth. The following bandwidth
 selectors are available:
 \itemize{
 \item \code{bw = "log"} estimates the smoothing bandwidth as \code{2^log10(n)}. This is
-not optimal for small \code{n} but quick for large \code{n}.
+not optimal for small \code{n} but quick for large \code{n}. This is the default.
 \item \code{bw = "taylor"} estimates the smoothing bandwidth with \code{bw_taylor()}.
-\item \code{bw ="nrd.trigmoments"} estimates the smoothing bandwidth with
+\item \code{bw = "nrd.trigmoments"} estimates the smoothing bandwidth with
 \code{\link[circular:bw.circular]{circular::bw.nrd.circular()}} and uses \code{trigmoments} to compute the
 von Mises concentration parameter.
 \item \code{bw = "nrd.ml"} estimates the smoothing bandwidth with

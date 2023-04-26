@@ -12,9 +12,9 @@
 #'  If character, a rule to choose the bandwidth. The following bandwidth 
 #'  selectors are available:
 #'  - `bw = "log"` estimates the smoothing bandwidth as `2^log10(n)`. This is 
-#'    not optimal for small `n` but quick for large `n`.
+#'    not optimal for small `n` but quick for large `n`. This is the default.
 #'  - `bw = "taylor"` estimates the smoothing bandwidth with `bw_taylor()`.
-#'  - `bw ="nrd.trigmoments"` estimates the smoothing bandwidth with 
+#'  - `bw = "nrd.trigmoments"` estimates the smoothing bandwidth with 
 #'    [circular::bw.nrd.circular()] and uses `trigmoments` to compute the 
 #'    von Mises concentration parameter.
 #'  - `bw = "nrd.ml"` estimates the smoothing bandwidth with 
@@ -62,7 +62,7 @@ stat_density_circular <- function(mapping = NULL, data = NULL,
                                   geom = "area", position = "stack",
                                   ...,
                                   period = 2 * pi,
-                                  bw = NULL,
+                                  bw = "log",
                                   adjust = 1,
                                   kernel = "vonmises",
                                   n = 512,
