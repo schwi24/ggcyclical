@@ -1,3 +1,70 @@
+#'#' Modes of circular density distributions
+#'
+#' Modes and antimodes are calculated based on local minima and maxima in the
+#' circular density distribution.
+#' 
+#' @seealso [stat_density_circular()]
+#' @seealso [stat_mode()]
+#' @seealso [circular::density.circular()]
+#' @param period The period of the cyclical data. A numeric value with default 
+#'  of `2 * pi` radians.
+#' @param mode The modes/antimodes to compute. A character string with one of
+#'  the following values:
+#'  - `mode = "peak"` computes the modes proper (peaks).
+#'  - `mode = "valley"` computes the antimodes (valleys/troughs).
+#'  - `mode = "trough"` computes the antimodes (valleys/troughs).
+#'  - `mode = "both"` computes both modes and antimodes at the same time.
+#' @param bw The smoothing bandwidth to be used.
+#'  If numeric, the concentration parameter of the circular smoothing kernel.
+#'  If character, a rule to choose the bandwidth. The following bandwidth 
+#'  selectors are available:
+#'  - `bw = "log"` estimates the smoothing bandwidth as `2^log10(n)`. This is 
+#'  not optimal for small `n` but quick for large `n`.
+#'  - `bw = "taylor"` estimates the smoothing bandwidth with `bw_taylor()`.
+#'  - `bw ="nrd.trigmoments"` estimates the smoothing bandwidth with 
+#'    [circular::bw.nrd.circular()] and uses `trigmoments` to compute the 
+#'    von Mises concentration parameter.
+#'  - `bw = "nrd.ml"` estimates the smoothing bandwidth with 
+#'   [circular::bw.nrd.circular()] and uses `ML` to compute the von Mises
+#'   concentration parameter.
+#'  - `bw = "ml"` estimates the smoothing bandwidth with 
+#'   [circular::bw.cv.ml.circular()].
+#'  - `bw = "mse"` estimates the smoothing bandwidth with 
+#'   [circular::bw.cv.mse.circular()].
+#'  Currently, wrapped normal distribution kernels are not working because they
+#'  require that x is within (0,1).
+#'  Note that automatic calculation of the bandwidth does not take weights 
+#'  into account.
+#' @param adjust A multiplicate bandwidth adjustment. This makes it possible
+#'  to adjust the bandwidth while still using the a bandwidth estimator.
+#'  For example, `adjust = 1/2` means use half of the default bandwidth.
+#' @param kernel Kernel. For circular data, the kernel estimation uses the von
+#'  Mises distribution implemented in [circular::density.circular()]. A 
+#'  character string with value `kernel = "vonmises"` by default.
+#' @param n number of equally spaced points at which the density is to be 
+#'  estimated, should be a power of two. Default is `n = 512`).
+#' @param K The number of terms used to calculate the wrapped normal 
+#'  distribution. This is currently not working.
+#' @param trim If `FALSE`, the default, each density is computed on the
+#'  full range of the data. If `TRUE`, each density is computed over the
+#'  range of that group: this typically means the estimated x values will
+#'  not line-up, and hence you won't be able to stack density values.
+#'  This parameter only matters if you are displaying multiple densities in
+#'  one plot or if you are manually adjusting the scale limits.
+#' @param bounds Known lower and upper bounds for estimated data. Default
+#'   `c(-Inf, Inf)` means that there are no (finite) bounds. If any bound is
+#'   finite, boundary effect of default density estimation will be corrected by
+#'   reflecting tails outside `bounds` around their closest edge. Data points
+#'   outside of bounds are removed with a warning.
+#' @eval ggplot2:::rd_computed_vars(
+#'  density  = "circular density estimate at mode points",
+#'  count    = "density * number of points - useful for stacked density plots.",
+#'  scaled   = "density estimate at mode points, scaled to maximum of 1.",
+#'  n        = "number of points.",
+#'  ndensity = "alias for `scaled`, to mirror the syntax of [`stat_bin()`]."
+#' )
+#' @export
+#' @rdname geom_mode_circular
 stat_mode_circular <- function(mapping = NULL, data = NULL,
                                geom = "point", position = "stack",
                                ...,
@@ -15,7 +82,7 @@ stat_mode_circular <- function(mapping = NULL, data = NULL,
                                show.legend = NA,
                                inherit.aes = TRUE) {
   
-  layer(
+  ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatModeCircular,
@@ -40,7 +107,10 @@ stat_mode_circular <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @rdname ggcyclical-extensions
+#' @format NULL
+#' @usage NULL
+#' @export
 StatModeCircular <- ggplot2::ggproto(
   "StatModeCircular",
   ggplot2::Stat,
@@ -74,11 +144,11 @@ StatModeCircular <- ggplot2::ggproto(
     flipped_aes = FALSE
   ) {
     
-    data <- flip_data(data, flipped_aes)
+    data <- ggplot2::flip_data(data, flipped_aes)
     if (trim) {
       range <- range(data$x, na.rm = TRUE)
     } else {
-      range <- scales[[flipped_names(flipped_aes)$x]]$dimension()
+      range <- scales[[ggplot2::flipped_names(flipped_aes)$x]]$dimension()
     }
     
     circular_mode <- compute_density_circular(

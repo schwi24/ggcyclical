@@ -1,3 +1,67 @@
+#' Smoothed circular density estimates
+#'
+#' Computes and draws circular kernel density estimate. This is a useful 
+#' alternative to regular kernel density estimate, which fail to capture
+#' cyclical (circular, periodic, directional, polar) data properly.
+#' 
+#' @seealso [circular::density.circular()]
+#' @seealso [bw_taylor()]
+#' @seealso [circular::bw.nrd.circular()]
+#' @seealso [circular::bw.cv.ml.circular()]
+#' @seealso [circular::bw.cv.mse.circular()]
+#' @param period The period of the cyclical data. A numeric value with default 
+#'  of `2 * pi` radians.
+#' @param bw The smoothing bandwidth to be used.
+#'  If numeric, the concentration parameter of the circular smoothing kernel.
+#'  If character, a rule to choose the bandwidth. The following bandwidth 
+#'  selectors are available:
+#'  - `bw = "log"` estimates the smoothing bandwidth as `2^log10(n)`. This is 
+#'  not optimal for small `n` but quick for large `n`.
+#'  - `bw = "taylor"` estimates the smoothing bandwidth with `bw_taylor()`.
+#'  - `bw ="nrd.trigmoments"` estimates the smoothing bandwidth with 
+#'    [circular::bw.nrd.circular()] and uses `trigmoments` to compute the 
+#'    von Mises concentration parameter.
+#'  - `bw = "nrd.ml"` estimates the smoothing bandwidth with 
+#'   [circular::bw.nrd.circular()] and uses `ML` to compute the von Mises
+#'   concentration parameter.
+#'  - `bw = "ml"` estimates the smoothing bandwidth with 
+#'   [circular::bw.cv.ml.circular()].
+#'  - `bw = "mse"` estimates the smoothing bandwidth with 
+#'   [circular::bw.cv.mse.circular()].
+#'  Currently, wrapped normal distribution kernels are not working because they
+#'  require that x is within (0,1).
+#'  Note that automatic calculation of the bandwidth does not take weights 
+#'  into account.
+#' @param adjust A multiplicate bandwidth adjustment. This makes it possible
+#'  to adjust the bandwidth while still using the a bandwidth estimator.
+#'  For example, `adjust = 1/2` means use half of the default bandwidth.
+#' @param kernel Kernel. For circular data, the kernel estimation uses the von
+#'  Mises distribution implemented in [circular::density.circular()]. A 
+#'  character string with value `kernel = "vonmises"` by default.
+#' @param n number of equally spaced points at which the density is to be 
+#'  estimated, should be a power of two. Default is `n = 512`).
+#' @param K The number of terms used to calculate the wrapped normal 
+#'  distribution. This is currently not working.
+#' @param trim If `FALSE`, the default, each density is computed on the
+#'  full range of the data. If `TRUE`, each density is computed over the
+#'  range of that group: this typically means the estimated x values will
+#'  not line-up, and hence you won't be able to stack density values.
+#'  This parameter only matters if you are displaying multiple densities in
+#'  one plot or if you are manually adjusting the scale limits.
+#' @param bounds Known lower and upper bounds for estimated data. Default
+#'   `c(-Inf, Inf)` means that there are no (finite) bounds. If any bound is
+#'   finite, boundary effect of default density estimation will be corrected by
+#'   reflecting tails outside `bounds` around their closest edge. Data points
+#'   outside of bounds are removed with a warning.
+#' @eval ggplot2:::rd_computed_vars(
+#'  density  = "circular density estimate.",
+#'  count    = "density * number of points - useful for stacked density plots.",
+#'  scaled   = "density estimate, scaled to maximum of 1.",
+#'  n        = "number of points.",
+#'  ndensity = "alias for `scaled`, to mirror the syntax of [`stat_bin()`]."
+#' )
+#' @export
+#' @rdname geom_density_circular
 stat_density_circular <- function(mapping = NULL, data = NULL,
                                   geom = "area", position = "stack",
                                   ...,
@@ -14,7 +78,7 @@ stat_density_circular <- function(mapping = NULL, data = NULL,
                                   show.legend = NA,
                                   inherit.aes = TRUE) {
   
-  layer(
+  ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatDensityCircular,
@@ -38,7 +102,10 @@ stat_density_circular <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @rdname ggcyclical-extensions
+#' @format NULL
+#' @usage NULL
+#' @export
 StatDensityCircular <- ggplot2::ggproto(
   "StatDensityCircular",
   ggplot2::Stat,
@@ -75,7 +142,7 @@ StatDensityCircular <- ggplot2::ggproto(
     if (trim) {
       range <- range(data$x, na.rm = TRUE)
     } else {
-      range <- scales[[flipped_names(flipped_aes)$x]]$dimension()
+      range <- scales[[ggplot2::flipped_names(flipped_aes)$x]]$dimension()
     }
     
     circular_density <- compute_density_circular(
@@ -84,7 +151,7 @@ StatDensityCircular <- ggplot2::ggproto(
       bw = bw, adjust = adjust, kernel = kernel, n = n, K = K, bounds = bounds
     )
     circular_density$flipped_aes <- flipped_aes
-    flip_data(circular_density, flipped_aes)
+    ggplot2::flip_data(circular_density, flipped_aes)
   }
 )
 
@@ -112,13 +179,14 @@ compute_density_circular <- function(
   if (nx < 2) {
     cli::cli_warn("Groups with fewer than two data points have been dropped.")
     return(
-      ggplot2:::data_frame0(
+      tibble::tibble(
         x = NA_real_,
         density = NA_real_,
         scaled = NA_real_,
         ndensity = NA_real_,
         n = NA_real_,
-        .size = 1
+        .rows = 1,
+        .name_repair = "minimal"
       )
     )
   }
