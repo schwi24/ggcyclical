@@ -1,4 +1,4 @@
-#'#' Modes of circular density distributions
+#' Modes of circular density distributions
 #'
 #' Modes and antimodes are calculated based on local minima and maxima in the
 #' circular density distribution.
