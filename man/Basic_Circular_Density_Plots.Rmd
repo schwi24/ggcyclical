@@ -17,7 +17,7 @@ devtools::load_all()
 
 ## Motivations
 
-The smoothed density estimates from `stat_density` underestimate the actual density at the continuous border in circular data. The density lines also often fail to join up at the continuous border, gapping the cyclically continuous density distribution.
+The smoothed density estimates from `stat_density` underestimate the actual density at the continuous border in circular data. The density lines also often fail to join up at the continuous border, gaping the cyclically continuous density distribution.
 
 The circular density estimates from `stat_density_circular` better represent circular data (in either carthesian or polar coordinates).
 
@@ -71,6 +71,7 @@ df %>%
 
 ```
 
+
 ## Bandwidth sSelection
 
 The bandwidth parameter for the kernel density estimation (KDE) is selected differently in linear and circular KDE and these estimates are generally in a reciprocal relationship to each other.
@@ -118,8 +119,8 @@ df %>%
     scale_x_continuous(limits = c(0, 2 * pi), breaks = c(0, 0.5*pi, pi, 1.5*pi, 2*pi), labels = c(0, "0.5π", "π", "1.5π", "2π")) +
     scale_y_continuous(expand = expansion(add = c(0.25, 0)))
 
-
 ```
+
 
 ## Types of cyclic data
 

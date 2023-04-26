@@ -4,7 +4,7 @@
 
 The smoothed density estimates from `stat_density` underestimate the
 actual density at the continuous border in circular data. The density
-lines also often fail to join up at the continuous border, gapping the
+lines also often fail to join up at the continuous border, gaping the
 cyclically continuous density distribution.
 
 The circular density estimates from `stat_density_circular` better
