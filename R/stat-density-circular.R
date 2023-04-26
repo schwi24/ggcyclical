@@ -1,8 +1,4 @@
 #' Smoothed circular density estimates
-#'
-#' Computes and draws circular kernel density estimate. This is a useful 
-#' alternative to regular kernel density estimate, which fail to capture
-#' cyclical (circular, periodic, directional, polar) data properly.
 #' 
 #' @seealso [circular::density.circular()]
 #' @seealso [bw_taylor()]
