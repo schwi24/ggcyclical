@@ -56,5 +56,6 @@ renv/
 renv.lock
 
 # Other
+.Rprofile
 .Rproj.user
 
