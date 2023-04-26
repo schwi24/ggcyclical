@@ -11,7 +11,7 @@
 #'  - `mode = "valley"` computes the antimodes (valleys/troughs).
 #'  - `mode = "trough"` computes the antimodes (valleys/troughs).
 #'  - `mode = "both"` computes both modes and antimodes at the same time.
-#' #' @param bw The smoothing bandwidth to be used.
+#' @param bw The smoothing bandwidth to be used.
 #'  If numeric, the standard deviation of the smoothing kernel.
 #'  If character, a rule to choose the bandwidth, as listed in
 #'  [stats::bw.nrd()]. Note that automatic calculation of the bandwidth does

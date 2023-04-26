@@ -12,18 +12,18 @@
 #'  If character, a rule to choose the bandwidth. The following bandwidth 
 #'  selectors are available:
 #'  - `bw = "log"` estimates the smoothing bandwidth as `2^log10(n)`. This is 
-#'  not optimal for small `n` but quick for large `n`.
+#'    not optimal for small `n` but quick for large `n`.
 #'  - `bw = "taylor"` estimates the smoothing bandwidth with `bw_taylor()`.
 #'  - `bw ="nrd.trigmoments"` estimates the smoothing bandwidth with 
 #'    [circular::bw.nrd.circular()] and uses `trigmoments` to compute the 
 #'    von Mises concentration parameter.
 #'  - `bw = "nrd.ml"` estimates the smoothing bandwidth with 
-#'   [circular::bw.nrd.circular()] and uses `ML` to compute the von Mises
-#'   concentration parameter.
+#'    [circular::bw.nrd.circular()] and uses `ML` to compute the von Mises
+#'    concentration parameter.
 #'  - `bw = "ml"` estimates the smoothing bandwidth with 
-#'   [circular::bw.cv.ml.circular()].
+#'    [circular::bw.cv.ml.circular()].
 #'  - `bw = "mse"` estimates the smoothing bandwidth with 
-#'   [circular::bw.cv.mse.circular()].
+#'    [circular::bw.cv.mse.circular()].
 #'  Currently, wrapped normal distribution kernels are not working because they
 #'  require that x is within (0,1).
 #'  Note that automatic calculation of the bandwidth does not take weights 
@@ -45,10 +45,10 @@
 #'  This parameter only matters if you are displaying multiple densities in
 #'  one plot or if you are manually adjusting the scale limits.
 #' @param bounds Known lower and upper bounds for estimated data. Default
-#'   `c(-Inf, Inf)` means that there are no (finite) bounds. If any bound is
-#'   finite, boundary effect of default density estimation will be corrected by
-#'   reflecting tails outside `bounds` around their closest edge. Data points
-#'   outside of bounds are removed with a warning.
+#'  `c(-Inf, Inf)` means that there are no (finite) bounds. If any bound is
+#'  finite, boundary effect of default density estimation will be corrected by
+#'  reflecting tails outside `bounds` around their closest edge. Data points
+#'  outside of bounds are removed with a warning.
 #' @eval ggplot2:::rd_computed_vars(
 #'  density  = "circular density estimate.",
 #'  count    = "density * number of points - useful for stacked density plots.",

@@ -81,17 +81,13 @@ the following values:
 \item \code{mode = "valley"} computes the antimodes (valleys/troughs).
 \item \code{mode = "trough"} computes the antimodes (valleys/troughs).
 \item \code{mode = "both"} computes both modes and antimodes at the same time.
-#' @param bw The smoothing bandwidth to be used.
-If numeric, the standard deviation of the smoothing kernel.
-If character, a rule to choose the bandwidth, as listed in
-\code{\link[stats:bandwidth]{stats::bw.nrd()}}. Note that automatic calculation of the bandwidth does
-not take weights into account.
 }}
 
 \item{bw}{The smoothing bandwidth to be used.
 If numeric, the standard deviation of the smoothing kernel.
 If character, a rule to choose the bandwidth, as listed in
-\code{\link[stats:bandwidth]{stats::bw.nrd()}}.}
+\code{\link[stats:bandwidth]{stats::bw.nrd()}}. Note that automatic calculation of the bandwidth does
+not take weights into account.}
 
 \item{adjust}{A multiplicate bandwidth adjustment. This makes it possible
 to adjust the bandwidth while still using the a bandwidth estimator.
