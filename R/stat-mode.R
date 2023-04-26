@@ -93,6 +93,7 @@ compute_mode <- function(data, mode) {
     mode,
     "peak" = which(diff(sign(diff(data$density))) < 0) + 1,
     "trough" = which(diff(sign(diff(data$density))) > 0) + 1,
+    "valley" = which(diff(sign(diff(data$density))) > 0) + 1,
     "both" = c(
       which(diff(sign(diff(data$density))) < 0) + 1,
       which(diff(sign(diff(data$density))) > 0) + 1
