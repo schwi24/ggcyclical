@@ -126,7 +126,11 @@ df %>%
 
 Cyclic datasets are common in natural sciences and include for example wind directions, optimal angles, preferred movement directions of microbes under chemotaxis, and many temporal datasets.
 
+<<<<<<< HEAD
 In `stat_density_circular`, all calculations are internally performed on the unit circle $(0, 2\pi)$. Any cyclical data is transformed using the period $\frac{2\pi x}{\text{period}}$ and the normalized densities are converted back before output. This transformation is controlled by the parameter `period`. Thus, the output seamlessly integrates in `ggplot2` and can be scaled like other polar data.
+=======
+In `stat_density_circular`, all calculations are internally performed on the unit circle $(0, 2\pi)$. Any cyclical data is transformed using the period $\frac{2\pi x}{\text{period}}$ and the normalized densities are converted back before output. This transformation is controlled by the parameter `period`. Thus, the output seamlessly integrates in `ggplot2` and can be scaled like other data.
+>>>>>>> 4b0a87796989e25013138d5094af7a1a5c1789d0
 
 ```{r period, warning=FALSE, dev="png"}
 df <- tibble(
