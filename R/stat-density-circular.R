@@ -273,7 +273,6 @@ compute_density_circular <- function(
       to = to
     )
   }
-  cli::cli_warn(period)
   # decircularize
   dens <- tibble(
     x = (as.numeric(dens$x) * period / (2 * pi)),

@@ -34,7 +34,7 @@ stat_mode_circular(
   ...,
   period = 2 * pi,
   mode = "peak",
-  bw = NULL,
+  bw = "log",
   adjust = 1,
   kernel = "vonmises",
   n = 512,
