@@ -66,7 +66,7 @@ stat_mode <- function(mapping = NULL, data = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(
+    params = rlang::list2(
       mode = mode,
       bw = bw,
       adjust = adjust,
@@ -74,8 +74,8 @@ stat_mode <- function(mapping = NULL, data = NULL,
       n = n,
       trim = trim,
       na.rm = na.rm,
-      bounds = bounds,
       orientation = orientation,
+      bounds = bounds,
       ...
     )
   )

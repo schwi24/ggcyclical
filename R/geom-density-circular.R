@@ -25,8 +25,7 @@ geom_density_circular <- function(mapping = NULL, data = NULL,
                                   na.rm = FALSE,
                                   orientation = NA,
                                   show.legend = NA,
-                                  inherit.aes = TRUE
-                                  ) {
+                                  inherit.aes = TRUE) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -36,8 +35,16 @@ geom_density_circular <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = rlang::list2(
+      period = period,
+      bw = bw,
+      adjust = adjust,
+      kernel = kernel,
+      n = n,
+      K = K,
+      trim = trim,
       na.rm = na.rm,
       orientation = orientation,
+      bounds = bounds,
       ...
     )
   )

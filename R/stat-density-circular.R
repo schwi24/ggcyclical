@@ -82,7 +82,7 @@ stat_density_circular <- function(mapping = NULL, data = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(
+    params = rlang::list2(
       period = period,
       bw = bw,
       adjust = adjust,
@@ -91,8 +91,8 @@ stat_density_circular <- function(mapping = NULL, data = NULL,
       K = K,
       trim = trim,
       na.rm = na.rm,
-      bounds = bounds,
       orientation = orientation,
+      bounds = bounds,
       ...
     )
   )
@@ -138,12 +138,12 @@ StatDensityCircular <- ggplot2::ggproto(
   compute_group = function(
     data, scales,
     period = 2 * pi,
-    bw = NULL, adjust = 1, kernel = "vonmises", n = 512, K = NULL, trim = FALSE,
+    bw = "log", adjust = 1, kernel = "vonmises", n = 512, K = NULL, trim = FALSE,
     na.rm = FALSE, bounds = c(-Inf, Inf),
     flipped_aes = FALSE
   ) {
     
-    data <- flip_data(data, flipped_aes)
+    data <- ggplot2::flip_data(data, flipped_aes)
     if (trim) {
       range <- range(data$x, na.rm = TRUE)
     } else {
@@ -161,8 +161,9 @@ StatDensityCircular <- ggplot2::ggproto(
 )
 
 compute_density_circular <- function(
-    x, w, period = 2 * pi,
-    from, to, bw = NULL, adjust = 1, kernel = "vonmises", n = 512, K = NULL,
+    x, w,
+    period = 2 * pi, from = 0, to = 2 * pi, 
+    bw = "log", adjust = 1, kernel = "vonmises", n = 512, K = NULL,
     bounds = c(-Inf, Inf)
   ) {
   
@@ -197,11 +198,30 @@ compute_density_circular <- function(
   }
   
   # circularize
-  x <- circular::as.circular(
+  x <- circular::circular(
     x = 2 * pi * x / period,
     type = "angles",
     units = "radians",
     modulo = "2pi",
+    zero = 0,
+    rotation = "clock",
+    template = "none"
+  )
+  from <- circular::circular(
+    x = from * 2 * pi / period,
+    type = "angles",
+    units = "radians",
+    modulo = "asis",
+    zero = 0,
+    rotation = "clock",
+    template = "none"
+  )
+  
+  to <- circular::circular(
+    x = to * 2 * pi / period,
+    type = "angles",
+    units = "radians",
+    modulo = "asis",
     zero = 0,
     rotation = "clock",
     template = "none"
@@ -241,25 +261,31 @@ compute_density_circular <- function(
       x = x, bw = bw, adjust = adjust, kernel = kernel, n = n, K = K
     )
     dens <- ggplot2:::reflect_density(
-      dens = dens,
+      dens = tibble(x = as.numeric(dens$x), y = as.numeric(dens$y)),
       bounds = bounds,
-      from = circular::circular(from * 2 * pi / period),
-      to = circular::circular(to * 2 * pi / period)
+      from = as.numeric(from),
+      to = as.numeric(to)
     )
   } else {
     dens <- circular::density.circular(
       x = x, bw = bw, adjust = adjust, kernel = kernel, n = n, K = K,
-      from = circular::circular(from * 2 * pi / period),
-      to = circular::circular(to * 2 * pi / period)
+      from = from,
+      to = to
     )
   }
+  cli::cli_warn(period)
+  # decircularize
+  dens <- tibble(
+    x = (as.numeric(dens$x) * period / (2 * pi)),
+    y = (as.numeric(dens$y) * 2 * pi / period)
+  )
   
   tibble::tibble(
-    x = dens$x * period / (2 * pi),
-    density = dens$y * 2 * pi / period,
+    x = dens$x,
+    density = dens$y,
     scaled = dens$y / max(dens$y, na.rm = TRUE),
     ndensity = dens$y / max(dens$y, na.rm = TRUE),
-    count = dens$y * nx * 2 * pi / period,
+    count = dens$y * nx,
     n = nx,
     .rows = length(dens$x),
     .name_repair = "minimal"

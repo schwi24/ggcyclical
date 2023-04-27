@@ -70,7 +70,7 @@ stat_mode_circular <- function(mapping = NULL, data = NULL,
                                ...,
                                period = 2 * pi,
                                mode = "peak",
-                               bw = NULL,
+                               bw = "log",
                                adjust = 1,
                                kernel = "vonmises",
                                n = 512,
@@ -90,7 +90,7 @@ stat_mode_circular <- function(mapping = NULL, data = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list(
+    params = rlang::list2(
       period = period,
       mode = mode,
       bw = bw,
@@ -100,8 +100,8 @@ stat_mode_circular <- function(mapping = NULL, data = NULL,
       K = K,
       trim = trim,
       na.rm = na.rm,
-      bounds = bounds,
       orientation = orientation,
+      bounds = bounds,
       ...
     )
   )
@@ -146,7 +146,7 @@ StatModeCircular <- ggplot2::ggproto(
     data, scales,
     period = 2 * pi,
     mode = "peak",
-    bw = NULL, adjust = 1, kernel = "vonmises", n = 512, K = NULL, trim = FALSE,
+    bw = "log", adjust = 1, kernel = "vonmises", n = 512, K = NULL, trim = FALSE,
     na.rm = FALSE, bounds = c(-Inf, Inf),
     flipped_aes = FALSE
   ) {
@@ -166,6 +166,6 @@ StatModeCircular <- ggplot2::ggproto(
     circular_mode <- compute_mode(data = circular_mode, mode = mode)
     
     circular_mode$flipped_aes <- flipped_aes
-    flip_data(circular_mode, flipped_aes)
+    ggplot2::flip_data(circular_mode, flipped_aes)
   }
 )
