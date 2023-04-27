@@ -131,6 +131,7 @@ converted back before output. This transformation is controlled by the
 parameter `period`. Thus, the output seamlessly integrates in `ggplot2`
 and can be scaled like other polar data.
 
+    set.seed(19200725)
     df <- tibble(
       x = c(rnorm(160, pi, 2), rnorm(40, 1.5*pi, 1)),
     ) %>%
@@ -150,7 +151,7 @@ and can be scaled like other polar data.
         geom_density(color = "red") +
         geom_mode_point(color = "red", mode = "both") +
         geom_density_circular(period = 12, color = "black") +
-        geom_mode_point(stat = "mode_circular", period = 12, mode = "both", color = "black") +
+        geom_mode_circular(period = 12, mode = "both", color = "black") +
         scale_x_continuous(
           limits = c(0, 12),
           breaks = 1:12
@@ -162,7 +163,8 @@ and can be scaled like other polar data.
       ggplot(., aes(x)) +
         geom_density(color = "red") +
         geom_density_circular(period = 12, color = "black") +
-        geom_point(stat = "mode_circular", mode = "both", period = 12, color = "black") +
+        #geom_mode_point(stat = "mode_circular", mode = "both", period = 12, bw = "log", kernel = "vonmises", color = "blue") + #verbose
+        geom_mode_circular(mode = "both", period = 12, color = "black") +
         geom_segment(aes(xend = x, y = 0.30, yend = 0.275), alpha = 0.1, linewidth = 2) +
         coord_polar(theta = "x", start = 0, direction = 1) +
         scale_x_continuous(
