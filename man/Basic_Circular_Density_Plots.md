@@ -12,6 +12,7 @@ represent circular data (in either carthesian or polar coordinates).
 
     set.seed("19200725")
 
+    ## Create some circular data
     df <- tibble(
       x = c(rnorm(160, pi, 2), rnorm(40, 1.5*pi, 1)),
     ) %>%
@@ -24,6 +25,7 @@ represent circular data (in either carthesian or polar coordinates).
         )
       )
 
+    ## carthesian coordiantes
     df %>%
       ggplot(., aes(x)) +
         geom_rug(alpha = 0.1, linewidth = 2, length = unit(5, "mm")) +
@@ -43,6 +45,7 @@ represent circular data (in either carthesian or polar coordinates).
 
 ![](figures/better_density-1.png)
 
+    ## polar coordinates
     df %>%
       ggplot(., aes(x)) +
         geom_density(color = "red") +
@@ -68,12 +71,14 @@ selected differently in linear and circular KDE and these estimates are
 generally in a reciprocal relationship to each other. The bandwidth
 estimation can take noticeably longer for sample sizes *n* &gt; 1000
 with the implementation in the package `circular`. Thus, a rough
-estimate of `bw`  = *l**o**g*<sub>10</sub>(*n*) is used by default (for
-now) in `stat_density_circular`. However, also more suitable estimates
-are implemented through the circular kernel density estimation methods
-from `circular` if desired.
+estimate of `bw`  = log<sub>10</sub>(*n*) is used by default (for now)
+in `stat_density_circular`. However, also more suitable estimates are
+implemented through the circular kernel density estimation methods from
+`circular` if desired.
 
     set.seed("19200725")
+
+    ## Create narrow and wide circular data
     df <- tibble(
       wide = rnorm(1000, pi, 2),
       narrow = rnorm(1000, pi, 0.2)
@@ -93,6 +98,7 @@ from `circular` if desired.
         )
       )
 
+    ## carthesian coordinates
     df %>%
       ggplot(., aes(x)) +
         facet_wrap(facets = ~ group) +
@@ -105,6 +111,7 @@ from `circular` if desired.
 
 ![](figures/bw_selection-1.png)
 
+    ## polar coordinates
     df %>%
       ggplot(., aes(x)) +
         facet_wrap(facets = ~ group) +
@@ -122,16 +129,20 @@ from `circular` if desired.
 
 Cyclic datasets are common in natural sciences and include for example
 wind directions, optimal angles, preferred movement directions of
-microbes under chemotaxis, and many temporal datasets.
+microbes under chemotaxis, and many temporal datasets. Conversions
+between these cyclical units are straightforward.
 
-In `stat_density_circular`, all calculations are internally performed on
-the unit circle (0,2*π*). Any cyclical data is transformed using the
-period $\frac{2\pi x}{\text{period}}$ and the normalized densities are
-converted back before output. This transformation is controlled by the
-parameter `period`. Thus, the output seamlessly integrates in `ggplot2`
-and can be scaled like other polar data.
+In `stat_density_circular`, all calculations are internally performed in
+radians on the unit circle (0,2*π*). Any cyclical data *x* is
+transformed using the period $\frac{2\pi x}{\text{period}}$ and the
+normalized densities are converted back before output. This
+transformation is controlled by the parameter `period`. Thus, the output
+seamlessly integrates in `ggplot2` and can be scaled like other polar
+data.
 
     set.seed(19200725)
+
+    ## Create some circular data and map to a clock with hourly interval (0, 12)
     df <- tibble(
       x = c(rnorm(160, pi, 2), rnorm(40, 1.5*pi, 1)),
     ) %>%
@@ -145,6 +156,7 @@ and can be scaled like other polar data.
         x = (x * 12) / (2 * pi)
       )
 
+    ## carthesian coordinates
     df %>%
       ggplot(., aes(x)) +
         geom_rug(alpha = 0.1, linewidth = 2, length = unit(5, "mm")) +
@@ -159,6 +171,7 @@ and can be scaled like other polar data.
 
 ![](figures/period-1.png)
 
+    ## polar coordinates
     df %>%
       ggplot(., aes(x)) +
         geom_density(color = "red") +
