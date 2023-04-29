@@ -17,19 +17,23 @@ The average angle in radians or degrees.
 }
 \description{
 Angular data repeat every 2*pi radians which has to be taken into account
-for calculating the standard deviation over angles. For precise calculation
-of the variance \eqn{\sigma_\theta^2}, first the mean angle \eqn{\theta_a}
-has to be calculated followed by two additional mean values \eqn{{\sigma_
-\theta}^2 = \mu({\Delta_i}^2) - (\mu(\Delta_i))^2} in order to account for
-the continuous border at \eqn{(0,2\pi)}, with \eqn{|\Delta_i| = \text{min}
-\left(|\theta_i-\theta_a|,2\pi - |\theta_i-\theta_a|\right)}. Yamartino 1984
-introduces therefore a single-pass approximation by interpolation between the
-edge cases of small angles (\eqn{\sigma_\theta\approx\text{asin}(\varepsilon
-)}) and maximal variance (\eqn{{\sigma_\theta}^2\approx\frac{\pi^2}{3}}).
-This resulted in the following equation:
+for calculating the standard deviation over angles. This function uses the
+single-pass approximation from Yamartino 1984 to calculate the angular
+standard deviation.
+}
+\details{
+For precise calculation of the variance \eqn{\sigma_\theta^2}, first the mean
+angle \eqn{\theta_a} has to be calculated followed by two additional mean
+values \eqn{{\sigma_\theta}^2 = \mu({\Delta_i}^2) - (\mu(\Delta_i))^2} in
+order to account for the continuous border at \eqn{(0,2\pi)}, with \eqn{
+|\Delta_i| = \text{min}\left(|\theta_i-\theta_a|,2\pi - |\theta_i-\theta_a|
+\right)}. Yamartino 1984 introduces therefore a single-pass approximation by
+interpolation between the edge cases of small angles (\eqn{\sigma_\theta
+\approx\text{asin}(\varepsilon)}) and maximal variance (\eqn{{\sigma_\theta}
+^2\approx\frac{\pi^2}{3}}). This resulted in the following equation:
 \deqn{\sigma_\theta\approx\text{asin}(\varepsilon)\left(1 + b\varepsilon^3
-\right)}
-with \eqn{b=\frac{2}{\sqrt{3}-1}} and \eqn{\varepsilon=\sqrt{1-\left(\mu(
+\right),}
+with \eqn{b=\frac{2}{\sqrt{3}}-1} and \eqn{\varepsilon=\sqrt{1-\left(\mu(
 \text{sin}(\theta_i))^2 + \mu(\text{cos}(\theta_i))^2\right)}}.
 }
 \seealso{
