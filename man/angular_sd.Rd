@@ -21,13 +21,13 @@ for calculating the standard deviation around the mean angle.
 }
 \details{
 After transformation of the circular data to radians on the unit circle, the
-circular data can be expressed as complex complex vectors \eqn{z = e^{i
-\theta\cdot n}}. If the circular data distribution is a wrapped normal or von
-Mises distribution, the average value of \eqn{z} (the mean resultant) is
-given by \eqn{\langle z\rangle = e^{i\mu - \frac{\sigma^2}{2}}}, with the
-mean angle \eqn{\mu}. The length of the mean resultant is given by \eqn{|
-\langle z\rangle| = e^{- \frac{\sigma^2}{2}} = \rho}. This yields an
-expression for the angular standard deviation \eqn{\sigma} around \eqn{\mu}:
+circular data can be expressed as complex vectors \eqn{z = e^{i\theta\cdot 
+n}}. If the circular data distribution is a wrapped normal or von Mises
+distribution, the average value of \eqn{z} (the mean resultant) is given by
+\eqn{\langle z\rangle = e^{i\mu - \frac{\sigma^2}{2}}}, with the mean angle
+\eqn{\mu}. The length of the mean resultant is given by \eqn{|\langle z
+\rangle| = e^{- \frac{\sigma^2}{2}} = \rho}. This yields an expression for
+the angular standard deviation \eqn{\sigma} around \eqn{\mu}:
 \deqn{\sigma = \sqrt{\text{ln}(\rho^{-2})} = \sqrt{-2\text{ln}(\rho)}}
 This is used to calculate the angular standard deviation. The value of
 \eqn{\rho} is given by the following expression:
