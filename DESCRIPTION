@@ -11,7 +11,7 @@ Description:
   data and uses many statistical tools from the package `circular` but without
   forcing the data format `circular`. It also adds functions to calculate 
   summary statistics in tidy workflows.
-License: MIT + file LICENSE.md
+License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/schwi24/ggcyclical
 BugReports: https://github.com/schwi24/ggcyclical/issues
