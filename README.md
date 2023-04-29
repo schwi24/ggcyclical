@@ -10,6 +10,6 @@ This package extends the package `ggplot2` with functions to plot cyclical data 
 ## Key features
 * Circular kernel density estimation in `stat_density_circular` for `geom_density_circular`.
 * Add modes (peaks) and antimodes (troughs/valleys) to regular and cyclical density plots with `stat_mode`, `stat_mode_circular`, and `geom_mode_point`.
-* Calculate cyclical mean, weighted mean, and standard deviations.
+* Calculate angular mean `angular_mean()`, weighted angular mean `weighted_angular_mean()`, and angular standard deviations `angular_sd()`, also with the approximation from Yamartino 1984 `angular_sd_yamartino()`.
 
 ![](man/figures/better_density-2.png)
