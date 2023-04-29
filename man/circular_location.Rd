@@ -12,6 +12,7 @@ This package implements the following measures of location for circular data.
 }
 \seealso{
 Other location_measures: 
-\code{\link{angular_mean}()}
+\code{\link{angular_mean}()},
+\code{\link{weighted_angular_mean}()}
 }
 \concept{location_measures}

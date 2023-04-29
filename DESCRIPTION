@@ -22,10 +22,12 @@ Collate:
     'geom-density-circular.R'
     'geom-mode-circular.R'
     'geom-mode-point.R'
-    'ggproto-classes.R'
     'stat-density-circular.R'
     'stat-mode-circular.R'
     'stat-mode.R'
+    'ggproto-classes.R'
+    'circular_measures.R'
+    'directional_speed.R'
 Imports:
     rlang (>= 1.1.0),
     ggplot2 (>= 3.4.2),

@@ -4,17 +4,17 @@
 \alias{is_angle_in_range}
 \title{Angular range check}
 \usage{
-is_angle_in_range(x, angular_range = c(0, 2 * pi))
+is_angle_in_range(x, period = 2 * pi, angular_range = c(0, 2 * pi))
 }
 \arguments{
 \item{x}{Numeric vector with angles to be tested.}
 
+\item{period}{A numeric value declaring the period of the circular data. The
+default is \code{2 * pi}.}
+
 \item{angular_range}{Numeric vector with only the limits of
 the angular test range. The full circle range in radians, \code{angular_range = c(0, 2*pi)},
 is chosen by default.}
-
-\item{period}{A numeric value declaring the period of the circular data. The
-default is \code{2 * pi}.}
 }
 \value{
 A logical vector of same length as x with values \code{TRUE} if the

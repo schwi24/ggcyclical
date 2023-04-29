@@ -12,6 +12,7 @@ This package implements the following measures of spread for circular data.
 }
 \seealso{
 Other spread_measures: 
+\code{\link{angular_sd_yamartino}()},
 \code{\link{angular_sd}()}
 }
 \concept{spread_measures}

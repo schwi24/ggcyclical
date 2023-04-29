@@ -33,7 +33,7 @@ NULL
 #' @return A numeric vector with circular data converted to the range 
 #' `[0, period[`.
 #' @export
-nice_angles <- function(x, period = 2 * pi, force_radians = TRUE) {
+nice_angles <- function(x, period = 2*pi, force_radians = TRUE) {
 
   # Check input types
   if (!all(is.numeric(x), is.numeric(period), is.logical(force_radians))) {
@@ -63,7 +63,7 @@ nice_angles <- function(x, period = 2 * pi, force_radians = TRUE) {
 #' @return A logical vector of same length as x with values `TRUE` if the 
 #' individual angle is within the test range or `FALSE` if not.
 #' @export
-is_angle_in_range <- function(x, angular_range = c(0, 2*pi)) {
+is_angle_in_range <- function(x, period = 2*pi, angular_range = c(0, 2*pi)) {
   # Test if an angle x falls within angular_range
   
   # Check input types
@@ -116,7 +116,7 @@ is_angle_in_range <- function(x, angular_range = c(0, 2*pi)) {
 #' @return The average numeric value of the circular data.
 #' @family location_measures
 #' @export
-angular_mean <- function(x, period = 2 * pi, revolution = 0) {
+angular_mean <- function(x, period = 2*pi, revolution = 0) {
   
   # Check input types
   if (!all(is.numeric(x), is.numeric(period), is.numeric(revolution))) {
@@ -169,7 +169,7 @@ angular_mean <- function(x, period = 2 * pi, revolution = 0) {
 #' @return The angular standard deviation of the circular data as numeric value.
 #' @family spread_measures
 #' @export
-angular_sd <- function(x, period = 2 * pi) {
+angular_sd <- function(x, period = 2*pi) {
   
   # Check input types
   if (!all(is.numeric(x), is.numeric(period))) {
