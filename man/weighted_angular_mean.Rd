@@ -33,11 +33,13 @@ with the average velocity in the x (\eqn{V_{xa} = \frac{1}{n}\sum_{i=1}^n V_i
 \seealso{
 Other directional_speed: 
 \code{\link{angular_sd_yamartino}()},
-\code{\link{directional_speed}}
+\code{\link{directional_speed}},
+\code{\link{vector_mean_speed}()}
 
 Other location_measures: 
 \code{\link{angular_mean}()},
-\code{\link{circular_location}}
+\code{\link{circular_location}},
+\code{\link{vector_mean_speed}()}
 }
 \concept{directional_speed}
 \concept{location_measures}

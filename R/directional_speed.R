@@ -115,3 +115,43 @@ angular_sd_yamartino <- function(x, period = 2*pi){
   
 }
 
+#' Vector mean velocity (Yamartino 1984)
+#' 
+#' Besides the mean speed \eqn{\bar{V}=\frac{1}{n}\sum_{i=1}^n V_i}, the vector-
+#' mean speed can be calculated with the average speed in the x- and y-
+#' direction, respectively:
+#' \deqn{V_v=\sqrt{\bar{V_x}^2 + \bar{V_y}^2} = \sqrt{\bar{-\frac{1}{n}
+#' \sum_{i=1}^n V_i\text{sin}(\theta_i)}^2 + \bar{-\frac{1}{n}\sum_{i=1}^n V_i
+#' \text{cos}(\theta_i)}^2}} 
+#' @param angle Numeric vector with angles
+#' @param speed Numeric vector with velocities used to weight the mean
+#' @param period A numeric value declaring the period of the circular data. The
+#' default is `2 * pi`.
+#' @return The average angle in radians or degrees.
+#' @family directional_speed
+#' @family location_measures
+#' @export
+vector_mean_speed <- function(angle, period = 2*pi, speed) {
+
+  # Check input types
+  if(!is.numeric(angle)){
+    stop("Invalid type! x must be numeric.")
+  }
+  if(!is.numeric(period)){
+    stop("Invalid type! `period` must be numeric.")
+  }
+  if(!is.numeric(speed)){
+    stop("Invalid type! `period` must be numeric.")
+  }
+  
+  # Convert angles to radians
+  angle <- 2 * pi * x / period
+  
+  # Calculate mean speed in x and y, then length of added-up vector
+  sx <- mean(speed * sin(angle))
+  cx <- mean(speed * cos(angle))
+  mean_speed <- sqrt(sx*sx + cx*cx)
+  
+  return(mean_speed)
+  
+}

@@ -13,6 +13,7 @@ This package implements the following measures of location for circular data.
 \seealso{
 Other location_measures: 
 \code{\link{angular_mean}()},
+\code{\link{vector_mean_speed}()},
 \code{\link{weighted_angular_mean}()}
 }
 \concept{location_measures}

@@ -39,6 +39,7 @@ with \eqn{b=\frac{2}{\sqrt{3}}-1} and \eqn{\varepsilon=\sqrt{1-\left(\mu(
 \seealso{
 Other directional_speed: 
 \code{\link{directional_speed}},
+\code{\link{vector_mean_speed}()},
 \code{\link{weighted_angular_mean}()}
 
 Other spread_measures: 

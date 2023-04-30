@@ -38,6 +38,7 @@ by \eqn{n} revolutions such that \eqn{\bar{\theta} = \bar{\theta}
 \seealso{
 Other location_measures: 
 \code{\link{circular_location}},
+\code{\link{vector_mean_speed}()},
 \code{\link{weighted_angular_mean}()}
 }
 \concept{location_measures}

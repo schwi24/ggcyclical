@@ -12,6 +12,7 @@ them are based on Yamartino 1984.
 \seealso{
 Other directional_speed: 
 \code{\link{angular_sd_yamartino}()},
+\code{\link{vector_mean_speed}()},
 \code{\link{weighted_angular_mean}()}
 }
 \concept{directional_speed}
