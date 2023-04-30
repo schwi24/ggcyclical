@@ -261,7 +261,7 @@ compute_density_circular <- function(
       x = x, bw = bw, adjust = adjust, kernel = kernel, n = n, K = K
     )
     dens <- ggplot2:::reflect_density(
-      dens = tibble(x = as.numeric(dens$x), y = as.numeric(dens$y)),
+      dens = tibble::tibble(x = as.numeric(dens$x), y = as.numeric(dens$y)),
       bounds = bounds,
       from = as.numeric(from),
       to = as.numeric(to)
@@ -274,7 +274,7 @@ compute_density_circular <- function(
     )
   }
   # decircularize
-  dens <- tibble(
+  dens <- tibble::tibble(
     x = (as.numeric(dens$x) * period / (2 * pi)),
     y = (as.numeric(dens$y) * 2 * pi / period)
   )
