@@ -145,7 +145,7 @@ vector_mean_speed <- function(angle, period = 2*pi, speed) {
   }
   
   # Convert angles to radians
-  angle <- 2 * pi * x / period
+  angle <- 2 * pi * angle / period
   
   # Calculate mean speed in x and y, then length of added-up vector
   sx <- mean(speed * sin(angle))

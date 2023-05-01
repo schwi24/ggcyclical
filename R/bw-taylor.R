@@ -32,7 +32,7 @@ bw_taylor <- function(x, kappa.est = NULL){
   )
   n <- length(x)
   if(is.null(kappa.est)){
-    kappa.est <- circular:::MlevonmisesRad(x, mu=NULL, kappa=NULL, bias=TRUE)[4]
+    kappa.est <- MlevonmisesRad(x, mu=NULL, kappa=NULL, bias=TRUE)[4]
   }
   i0 <- besselI(x = kappa.est, nu = 0, expon.scaled = FALSE)
   i2 <- besselI(x = 2 * kappa.est, nu = 2, expon.scaled = FALSE)

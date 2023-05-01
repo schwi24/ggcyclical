@@ -3,8 +3,8 @@
 #' Computes and draws modes (peaks) and antimodes (troughs/valleys) in kernel 
 #' density estimates.
 #'
-#' @eval ggplot2:::rd_orientation()
-#' @eval ggplot2:::rd_aesthetics("geom", "point")
+#' @eval rd_orientation()
+#' @eval rd_aesthetics("geom", "point")
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_density
 #' @inheritParams ggplot2::geom_point

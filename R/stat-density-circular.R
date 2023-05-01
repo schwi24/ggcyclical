@@ -49,7 +49,7 @@
 #'  finite, boundary effect of default density estimation will be corrected by
 #'  reflecting tails outside `bounds` around their closest edge. Data points
 #'  outside of bounds are removed with a warning.
-#' @eval ggplot2:::rd_computed_vars(
+#' @eval rd_computed_vars(
 #'  density  = "circular density estimate.",
 #'  count    = "density * number of points - useful for stacked density plots.",
 #'  scaled   = "density estimate, scaled to maximum of 1.",
@@ -176,7 +176,7 @@ compute_density_circular <- function(
   }
   
   # Adjust data points and weights to all fit inside bounds
-  sample_data <- ggplot2:::fit_data_to_bounds(bounds, x, w)
+  sample_data <- fit_data_to_bounds(bounds, x, w)
   x <- sample_data$x
   w <- sample_data$w
   nx <- length(x)
@@ -260,7 +260,7 @@ compute_density_circular <- function(
     dens <- circular::density.circular(
       x = x, bw = bw, adjust = adjust, kernel = kernel, n = n, K = K
     )
-    dens <- ggplot2:::reflect_density(
+    dens <- reflect_density(
       dens = tibble::tibble(x = as.numeric(dens$x), y = as.numeric(dens$y)),
       bounds = bounds,
       from = as.numeric(from),

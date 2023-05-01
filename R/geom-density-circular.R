@@ -4,8 +4,8 @@
 #' alternative to regular kernel density estimate, which fail to capture
 #' cyclical (circular, periodic, directional, polar) data properly.
 #'
-#' @eval ggplot2:::rd_orientation()
-#' @eval ggplot2:::rd_aesthetics("geom", "density")
+#' @eval rd_orientation()
+#' @eval rd_aesthetics("geom", "density")
 #' @inheritParams ggplot2::layer
 #' @inheritParams ggplot2::geom_density
 #' @param geom,stat Use to override the default connection between

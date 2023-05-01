@@ -18,6 +18,8 @@ BugReports: https://github.com/schwi24/ggcyclical/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Collate: 
+    'functions_from_circular.R'
+    'functions_from_ggplot2.R'
     'bw-taylor.R'
     'geom-density-circular.R'
     'geom-mode-circular.R'

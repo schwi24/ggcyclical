@@ -34,7 +34,7 @@
 #'  finite, boundary effect of default density estimation will be corrected by
 #'  reflecting tails outside `bounds` around their closest edge. Data points
 #'  outside of bounds are removed with a warning.
-#' @eval ggplot2:::rd_computed_vars(
+#' @eval rd_computed_vars(
 #'  density  = "circular density estimate at mode points",
 #'  count    = "density * number of points - useful for stacked density plots.",
 #'  scaled   = "density estimate at mode points, scaled to maximum of 1.",
@@ -131,7 +131,7 @@ StatMode <- ggplot2::ggproto(
       range <- scales[[ggplot2::flipped_names(flipped_aes)$x]]$dimension()
     }
     
-    modal <- ggplot2:::compute_density(
+    modal <- compute_density(
       data$x, data$weight, from = range[1], to = range[2],
       bw = bw, adjust = adjust, kernel = kernel, n = n, bounds = bounds
     )

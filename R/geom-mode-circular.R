@@ -4,9 +4,8 @@
 #' density estimates. This is a specific version of geom_mode_point for circular
 #' density distribution.
 #'
-#' @eval ggplot2:::rd_orientation()
-#'
-#' @eval ggplot2:::rd_aesthetics("geom", "point")
+#' @eval rd_orientation()
+#' @eval rd_aesthetics("geom", "point")
 #' @inheritParams ggplot2::layer
 #' @inheritParams geom_density_circular
 #' @inheritParams geom_mode_point
